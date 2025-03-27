@@ -1,0 +1,30 @@
+<script>
+    function createInventoryItem(name, category, price) {
+    return {
+        name,
+        category,
+        price,
+        describeItem() {
+            console.log(`Item: ${this.name}, Category: ${this.category}, Price: ${this.price.toFixed(2)}`);
+        }
+    };
+}
+
+function addItemDiscount(inventoryItem, discountPercent) {
+    return {
+        ...inventoryItem,
+        discountPercent,
+        applyDiscount() {
+            const discountPrice = this.price - (this.price * (this.discountPercent / 100));
+            console.log(`Discounted Price for ${this.name}: ${discountPrice.toFixed(2)}`);
+        }
+    };
+}
+
+
+const item = createInventoryItem("Laptop", "Electronics", 1500);
+item.describeItem(); 
+
+const discountedItem = addItemDiscount(item, 10);
+discountedItem.applyDiscount();
+</script>
